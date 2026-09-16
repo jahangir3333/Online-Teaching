@@ -3,7 +3,10 @@ import { classes, courses } from '../data/content';
 import '../Portal.css';
 
 function TeacherPortal({ onBack }) {
-  const teacherSpecialties = ['HTML', 'CSS'];
+  const availableSpecialties = ['HTML', 'CSS', 'JAVASCRIPT', 'REACT', 'JAVA', 'C', 'SQL'];
+  const [teacherSpecialties, setTeacherSpecialties] = useState(['HTML', 'CSS']);
+  const [profileEditing, setProfileEditing] = useState(false);
+  const [draftSpecialties, setDraftSpecialties] = useState(teacherSpecialties);
   const teacherCourses = courses.filter((course) => teacherSpecialties.includes(course.category));
   const [classFormOpen, setClassFormOpen] = useState(false);
   const [teacherClasses, setTeacherClasses] = useState(() => classes.filter((classItem) => teacherSpecialties.includes(classItem.course)));
@@ -25,6 +28,23 @@ function TeacherPortal({ onBack }) {
     setClassFormOpen(false);
   };
 
+  const handleEditProfile = () => {
+    setDraftSpecialties(teacherSpecialties);
+    setProfileEditing(true);
+  };
+
+  const handleSaveProfile = (event) => {
+    event.preventDefault();
+    setTeacherSpecialties(draftSpecialties);
+    setTeacherClasses((currentClasses) => {
+      const remainingClasses = currentClasses.filter((classItem) => draftSpecialties.includes(classItem.course));
+      const matchingClasses = classes.filter((classItem) => draftSpecialties.includes(classItem.course));
+      const existingKeys = new Set(remainingClasses.map((classItem) => `${classItem.title}-${classItem.schedule}`));
+      return [...remainingClasses, ...matchingClasses.filter((classItem) => !existingKeys.has(`${classItem.title}-${classItem.schedule}`))];
+    });
+    setProfileEditing(false);
+  };
+
   return (
     <main className="portal-page teacher-portal">
       <nav className="portal-topbar" aria-label="Teacher portal navigation">
@@ -43,14 +63,15 @@ function TeacherPortal({ onBack }) {
       <section className="portal-content">
         <div className="metric-grid"><article className="metric-card"><span>Active learners</span><strong>248</strong><small>↑ 12% this month</small></article><article className="metric-card"><span>Average attendance</span><strong>94%</strong><small>↑ 4% this month</small></article><article className="metric-card"><span>Course rating</span><strong>4.9 <small>/ 5</small></strong><small>From 186 reviews</small></article><article className="metric-card accent"><span>Next live class</span><strong>Mon, 6 PM</strong><small>HTML foundations live class</small></article></div>
 
-        <section className="teacher-profile"><div className="profile-avatar">M</div><div className="profile-intro"><p className="eyebrow">Your teacher profile</p><h2>Maya Okafor</h2><p>Frontend developer and patient guide helping new builders turn ideas into clear, confident interfaces.</p></div><div className="profile-details"><span>Specialties</span><div className="specialty-list">{teacherSpecialties.map((specialty) => <span key={specialty}>{specialty}</span>)}</div><span className="profile-label">Teaching style</span><strong>Practical · Encouraging · Project-led</strong></div></section>
+        <section className="teacher-profile"><div className="profile-avatar">M</div><div className="profile-intro"><p className="eyebrow">Your teacher profile</p><h2>Maya Okafor</h2><p>Frontend developer and patient guide helping new builders turn ideas into clear, confident interfaces.</p></div><div className="profile-details"><span>Specialties</span><div className="specialty-list">{teacherSpecialties.map((specialty) => <span key={specialty}>{specialty}</span>)}</div><span className="profile-label">Teaching style</span><strong>Practical · Encouraging · Project-led</strong></div><button className="small-action edit-profile-button" type="button" onClick={handleEditProfile}>Edit profile</button></section>
+        {profileEditing && <form className="profile-editor" onSubmit={handleSaveProfile}><div><p className="eyebrow">Update your skills</p><h2>What do you teach?</h2></div><div className="skill-options">{availableSpecialties.map((specialty) => <label key={specialty}><input type="checkbox" checked={draftSpecialties.includes(specialty)} onChange={() => setDraftSpecialties((current) => current.includes(specialty) ? current.filter((item) => item !== specialty) : [...current, specialty])} />{specialty}</label>)}</div><div className="profile-editor-actions"><button className="text-button" type="button" onClick={() => setProfileEditing(false)}>Cancel</button><button className="primary-button" type="submit" disabled={draftSpecialties.length === 0}>Save profile <span>↗</span></button></div></form>}
 
         <div className="portal-columns teacher-columns">
           <section><div className="portal-section-heading compact"><div><p className="eyebrow">Your teaching</p><h2>Course performance</h2></div><button className="text-button" type="button">View reports ↗</button></div><div className="performance-list">{teacherCourses.map((course) => <article className="performance-row" key={course.id}><div className={`course-mark small ${course.color}`}><span>{course.category.slice(0, 1)}</span></div><div className="performance-name"><strong>{course.title}</strong><span>{course.lessons} · {course.level}</span></div><div className="performance-value"><strong>{course.category === 'HTML' ? '82%' : '71%'}</strong><span>complete</span></div></article>)}</div></section>
           <aside className="portal-card task-panel"><p className="eyebrow">Today</p><h2>Teaching checklist</h2><label><input type="checkbox" defaultChecked /> Review portfolio submissions</label><label><input type="checkbox" /> Add notes to next class</label><label><input type="checkbox" /> Share the class recording</label><button className="text-button" type="button">Open full checklist ↗</button></aside>
         </div>
 
-        <section className="class-management"><div className="portal-section-heading compact"><div><p className="eyebrow">Schedule</p><h2>Upcoming classes</h2></div><button className="text-button" type="button">Manage calendar ↗</button></div><div className="teacher-class-list">{teacherClasses.map((classItem) => <article className="teacher-class-row" key={`${classItem.title}-${classItem.schedule}`}><span className={`schedule-dot ${classItem.color}`} /><div><strong>{classItem.title}</strong><span>Course: {classItem.course} · {classItem.schedule}</span></div><span className="enrollment-count">{classItem.seats}</span><button className="small-action" type="button">Edit</button></article>)}</div></section>
+        <section className="class-management"><div className="portal-section-heading compact"><div><p className="eyebrow">Schedule</p><h2>Upcoming classes</h2></div><button className="text-button" type="button">Manage calendar ↗</button></div><div className="teacher-class-list">{teacherClasses.filter((classItem) => teacherSpecialties.includes(classItem.course)).map((classItem) => <article className="teacher-class-row" key={`${classItem.title}-${classItem.schedule}`}><span className={`schedule-dot ${classItem.color}`} /><div><strong>{classItem.title}</strong><span>Course: {classItem.course} · {classItem.schedule}</span></div><span className="enrollment-count">{classItem.seats}</span><button className="small-action" type="button">Edit</button></article>)}</div></section>
       </section>
     </main>
   );

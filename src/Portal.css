@@ -112,6 +112,14 @@
 .specialty-list { display: flex; flex-wrap: wrap; gap: 7px; margin: 10px 0 18px; }
 .specialty-list span { border: 1px solid #d6cdbd; color: var(--portal-ink); padding: 6px 8px; }
 .profile-details strong { display: block; font-size: 12px; margin-top: 7px; }
+.edit-profile-button { align-self: end; justify-self: end; }
+.profile-editor { background: #e5d7c0; border: 1px solid #d6cdbd; display: grid; gap: 22px; grid-template-columns: .8fr 1.2fr auto; margin-top: 12px; padding: 24px; }
+.profile-editor h2 { font-family: 'Fraunces', serif; font-size: 25px; font-weight: 500; margin: 0; }
+.skill-options { align-content: start; display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-options label { align-items: center; background: #fffaf2; border: 1px solid #d6cdbd; display: inline-flex; font-size: 12px; gap: 7px; padding: 9px 10px; }
+.skill-options input { accent-color: #a44e35; }
+.profile-editor-actions { align-items: center; display: flex; gap: 16px; }
+.profile-editor-actions .primary-button { white-space: nowrap; }
 .teacher-columns { margin-top: 62px; }
 .course-mark.small { flex-basis: 38px; height: 38px; }
 .course-mark.small span { font-size: 16px; }
@@ -143,6 +151,9 @@
   .teacher-profile { align-items: start; grid-template-columns: 58px 1fr; padding: 20px; }
   .profile-avatar { font-size: 24px; height: 58px; width: 58px; }
   .profile-details { border-left: 0; border-top: 1px solid #ded4c4; grid-column: 1 / -1; padding-left: 0; padding-top: 18px; }
+  .edit-profile-button { grid-column: 1 / -1; justify-self: start; }
+  .profile-editor { grid-template-columns: 1fr; }
+  .profile-editor-actions { justify-content: space-between; }
   .hero-portal-action { margin-top: 4px; }
   .course-details-content { padding: 44px 20px 70px; }
   .course-details-banner { padding: 22px; }
