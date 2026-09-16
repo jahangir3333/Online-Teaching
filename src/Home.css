@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #161f1a;
+  --ink-soft: #55645a;
+  --paper: #eef1ea;
+  --paper-raised: #f9faf6;
+  --line: #ccd6c3;
+  --gold: #e2a23e;
+  --coral: #b8593c;
+  --blue: #4f7a86;
+  --yellow: #e2a23e;
+}
+
+.course-modal { max-height: 90vh; overflow-y: auto; }
+.syllabus-heading { border-top: 1px solid var(--line); color: var(--ink); font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin: 24px 0 12px; padding-top: 20px; }
+.syllabus-list { color: var(--ink-soft); display: grid; font-size: 13px; gap: 10px; line-height: 1.4; margin: 0; padding-left: 24px; }
+.syllabus-list li::marker { color: var(--gold); font-family: 'IBM Plex Mono', monospace; font-weight: 600; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input { font: inherit; }
+
+.home-shell, .classes-page { background: var(--paper); color: var(--ink); font-family: 'Inter', sans-serif; min-height: 100vh; }
+
+/* ---------- shared top bar ---------- */
+.topbar { align-items: center; display: flex; justify-content: space-between; margin: 0 auto; max-width: 1240px; padding: 26px 5vw; }
+.brand { align-items: center; color: var(--ink); display: flex; font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; gap: 8px; text-decoration: none; }
+.brand-star { color: var(--gold); font-size: 20px; line-height: 1; }
+.nav-links { display: flex; gap: 32px; margin-left: 80px; }
+.nav-links a, .login-button { color: var(--ink-soft); font-size: 14px; text-decoration: none; }
+.nav-links a:hover { color: var(--ink); }
+.nav-actions { align-items: center; display: flex; gap: 16px; }
+.icon-button, .login-button, .back-button { background: none; border: 0; cursor: pointer; font-family: inherit; }
+.icon-button { font-size: 22px; line-height: 1; color: var(--ink-soft); }
+.signup-button, .primary-button { background: var(--ink); border: 0; border-radius: 3px; color: var(--paper-raised); cursor: pointer; display: inline-flex; align-items: center; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; gap: 10px; padding: 12px 18px; text-decoration: none; }
+.signup-button:hover, .primary-button:hover { background: #23312a; }
+.signup-button span, .primary-button span { color: var(--gold); font-size: 15px; }
+
+/* ---------- hero: code editor window ---------- */
+.hero { margin: 0 auto; max-width: 1240px; padding: 40px 5vw 90px; }
+.editor-window { background: linear-gradient(135deg, #142019 0%, #20382a 58%, #315542 100%); border: 1px solid #3b5a47; border-radius: 10px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(22, 31, 26, 0.6); }
+.editor-chrome { align-items: center; background: #10160f; display: flex; gap: 8px; padding: 14px 18px; border-bottom: 1px solid #26332a; }
+.editor-dot { background: #3a4a3f; border-radius: 50%; height: 10px; width: 10px; }
+.editor-tab { color: #8fa196; font-family: 'IBM Plex Mono', monospace; font-size: 12px; margin-left: 12px; }
+.editor-body { padding: 40px 5vw 50px; }
+.editor-line { display: flex; gap: 24px; }
+.line-no { color: #4b5b50; flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding-top: 6px; width: 20px; }
+.code-comment { color: #7fa38f; font-family: 'IBM Plex Mono', monospace; font-size: 14px; padding-top: 5px; }
+.editor-line-headline h1 { color: var(--paper-raised); font-family: 'Fraunces', serif; font-size: clamp(38px, 5vw, 62px); font-weight: 500; letter-spacing: -1.5px; line-height: 1.05; margin: 4px 0 22px; }
+.editor-line-body .hero-description { color: #b7c4bb; font-size: 16px; line-height: 1.6; margin: 0 0 30px; max-width: 480px; }
+.editor-line-actions { align-items: center; margin-bottom: 28px; }
+.hero-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 18px; }
+.run-button { align-items: center; background: var(--gold); border: 0; border-radius: 3px; color: var(--ink); cursor: pointer; display: inline-flex; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; gap: 10px; padding: 13px 20px; text-decoration: none; }
+.run-icon { font-size: 11px; }
+.ghost-button { background: none; border: 1px solid #3a4a3f; border-radius: 3px; color: var(--paper-raised); cursor: pointer; font-size: 14px; padding: 12px 18px; }
+.editor-line-stat { align-items: center; }
+.hero-stat { align-items: center; color: #9aa9a0; display: flex; font-family: 'IBM Plex Mono', monospace; font-size: 12px; gap: 9px; margin: 0; }
+.live-dot { background: #6bb98a; border-radius: 50%; display: inline-block; height: 7px; width: 7px; }
+
+/* ---------- course section ---------- */
+.course-section { margin: 0 auto; max-width: 1240px; padding: 70px 5vw 100px; }
+.section-heading h2 { color: var(--ink); font-family: 'Fraunces', serif; font-size: clamp(32px, 3.6vw, 46px); font-weight: 500; letter-spacing: -1px; line-height: 1.1; margin: 0 0 16px; }
+.section-note { color: var(--ink-soft); font-size: 15px; line-height: 1.55; margin: 0; max-width: 460px; }
+.tab-row { border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 26px; margin: 42px 0 30px; }
+.tab { background: none; border: 0; color: var(--ink-soft); cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 0 0 13px; }
+.tab.active { border-bottom: 2px solid var(--gold); color: var(--ink); font-weight: 600; }
+.course-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); }
+.course-card { background: var(--paper-raised); border: 1px solid var(--line); }
+.snippet-block { align-items: center; display: flex; height: 110px; justify-content: center; padding: 0 16px; }
+.snippet-block.coral { background: var(--coral); }
+.snippet-block.blue { background: var(--blue); }
+.snippet-block.yellow { background: var(--yellow); }
+.snippet-code { color: rgba(255,255,255,0.95); font-family: 'IBM Plex Mono', monospace; font-size: 15px; text-align: center; word-break: break-word; }
+.course-content { padding: 20px 20px 24px; }
+.level-tag { color: var(--ink-soft); display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; margin-bottom: 12px; }
+.course-content h3 { color: var(--ink); font-family: 'Fraunces', serif; font-size: 20px; font-weight: 500; line-height: 1.2; margin: 0 0 10px; }
+.course-meta-line { color: var(--ink-soft); font-size: 13px; margin: 0; }
+.course-card-action { background: none; border: 0; color: var(--coral); cursor: pointer; font-size: 13px; font-weight: 600; margin-top: 20px; padding: 0; }
+.course-card-action span { color: var(--gold); font-size: 15px; margin-left: 6px; }
+.course-card-action:hover { color: var(--ink); }
+.course-modal-mark { align-items: center; color: rgba(255,255,255,0.95); display: flex; font-family: 'IBM Plex Mono', monospace; font-size: 14px; height: 64px; justify-content: center; margin-bottom: 24px; width: 100%; }
+.course-modal-mark.coral { background: var(--coral); }
+.course-modal-mark.blue { background: var(--blue); }
+.course-modal-mark.yellow { background: var(--yellow); }
+.course-modal .level-tag { margin-bottom: 12px; }
+
+/* ---------- testimonial as review comment ---------- */
+.quote-section { background: var(--ink); padding: 90px 20px; display: flex; justify-content: center; }
+.comment-card { background: #1d2921; border: 1px solid #2c3a31; border-radius: 6px; max-width: 560px; padding: 34px; width: 100%; }
+.comment-head { align-items: center; display: flex; gap: 10px; margin-bottom: 18px; }
+.comment-avatar { align-items: center; background: var(--gold); border-radius: 50%; color: var(--ink); display: flex; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; height: 30px; justify-content: center; width: 30px; }
+.comment-author { color: var(--paper-raised); font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; }
+.comment-time { color: #7c8c81; font-size: 12px; }
+.comment-body { color: #dbe4dd; font-family: 'Fraunces', serif; font-size: clamp(19px, 2vw, 23px); line-height: 1.45; margin: 0 0 24px; }
+.save-button { background: none; border: 1px solid #3a4a3f; border-radius: 3px; color: var(--paper-raised); cursor: pointer; font-size: 13px; padding: 11px 16px; }
+.save-button.saved { border-color: var(--gold); color: var(--gold); }
+
+/* ---------- footer ---------- */
+.footer { align-items: center; display: flex; font-size: 13px; justify-content: space-between; margin: 0 auto; max-width: 1240px; padding: 30px 5vw; color: var(--ink-soft); }
+.footer .brand { font-size: 15px; }
+
+/* ---------- signup modal ---------- */
+.modal-backdrop { align-items: center; background: rgba(22, 31, 26, .72); display: flex; inset: 0; justify-content: center; padding: 20px; position: fixed; z-index: 10; }
+.signup-modal { background: var(--paper-raised); border-radius: 6px; max-width: 480px; padding: 42px; position: relative; width: 100%; }
+.modal-close { background: none; border: 0; color: var(--ink); cursor: pointer; font-size: 28px; position: absolute; right: 16px; top: 12px; }
+.signup-modal h2 { color: var(--ink); font-family: 'Fraunces', serif; font-size: 34px; font-weight: 500; margin: 0; }
+.modal-intro { color: var(--ink-soft); font-size: 14px; line-height: 1.55; margin: 16px 0 26px; max-width: 360px; }
+.signup-modal form { display: grid; gap: 8px; }
+.signup-modal label { color: var(--ink-soft); font-size: 12px; font-weight: 600; margin-top: 8px; }
+.signup-modal input { background: var(--paper); border: 1px solid var(--line); border-radius: 3px; color: var(--ink); outline: none; padding: 13px; }
+.signup-modal input:focus { border-color: var(--gold); }
+.modal-submit { justify-content: center; margin-top: 16px; width: 100%; }
+.modal-terms { color: #96a199; font-size: 11px; margin: 18px 0 0; }
+.signup-success { text-align: center; }
+.signup-success h2 { font-size: 32px; margin-top: 16px; }
+.signup-success p { color: var(--ink-soft); font-size: 14px; line-height: 1.5; margin: 16px auto 24px; max-width: 300px; }
+.signup-success .primary-button { margin: 0 auto; }
+.success-icon { align-items: center; background: var(--gold); border-radius: 50%; color: var(--ink); display: inline-flex; font-size: 22px; height: 50px; justify-content: center; width: 50px; }
+
+/* ---------- classes page (kept structurally, re-themed) ---------- */
+.classes-page { overflow: auto; }
+.classes-topbar { max-width: 1180px; }
+.back-button { color: var(--ink-soft); font-size: 14px; }
+.member-badge { border: 1px solid var(--line); color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 8px 11px; }
+.classes-intro { margin: 0 auto; max-width: 1180px; padding: 80px 5vw 55px; }
+.classes-intro h1 { color: var(--ink); font-family: 'Fraunces', serif; font-size: clamp(38px, 5vw, 58px); font-weight: 500; letter-spacing: -1px; line-height: 1.05; margin: 0; }
+.classes-intro > p:last-child { color: var(--ink-soft); font-size: 15px; line-height: 1.55; margin-top: 22px; max-width: 360px; }
+.class-list { margin: 0 auto; max-width: 1180px; padding: 0 5vw; }
+.class-option { align-items: center; background: var(--paper-raised); border: 1px solid var(--line); display: grid; gap: 24px; grid-template-columns: 110px 1fr auto; margin-bottom: 12px; padding: 16px; }
+.class-color { align-items: center; display: flex; height: 110px; justify-content: center; }
+.class-color span { color: rgba(255,255,255,0.9); font-size: 30px; }
+.class-color.coral { background: var(--coral); }
+.class-color.blue { background: var(--blue); }
+.class-color.yellow { background: var(--yellow); }
+.class-details .class-type { color: var(--gold); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; margin: 0 0 10px; }
+.class-details h2 { color: var(--ink); font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin: 0; }
+.class-details > p:not(.class-type) { color: var(--ink-soft); font-size: 13px; margin: 8px 0 18px; }
+.class-info { display: flex; gap: 20px; }
+.class-info span { color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
+.class-action { min-width: 140px; text-align: right; }
+.class-action .primary-button { justify-content: center; }
+.joined-label { color: #3f7a56; display: block; font-size: 13px; font-weight: 600; }
+.meeting-id { color: var(--ink-soft); display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; margin-top: 8px; }
+.zoom-link { color: var(--blue); display: block; font-size: 12px; margin-top: 6px; text-decoration: none; }
+.zoom-link:hover { text-decoration: underline; }
+.classes-note { color: var(--ink-soft); font-size: 13px; margin: 30px auto; max-width: 1180px; padding: 0 5vw 55px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 800px) {
+  .topbar { padding: 20px; }
+  .nav-links, .login-button { display: none; }
+  .editor-body { padding: 30px 20px 36px; }
+  .editor-line { gap: 14px; }
+  .editor-line-headline h1 { font-size: 40px; }
+  .course-section { padding: 55px 20px 70px; }
+  .tab-row { gap: 16px; overflow-x: auto; white-space: nowrap; }
+  .course-grid { grid-template-columns: 1fr; }
+  .comment-card { padding: 26px; }
+  .footer { align-items: start; flex-direction: column; gap: 12px; padding: 24px 20px; }
+  .signup-modal { padding: 34px 22px 26px; }
+  .class-option { align-items: start; gap: 16px; grid-template-columns: 74px 1fr; padding: 12px; }
+  .class-color { height: 74px; }
+  .class-action { grid-column: 2; min-width: 0; text-align: left; }
+  .classes-intro { padding: 55px 20px 40px; }
+  .class-list, .classes-note { padding-left: 20px; padding-right: 20px; }
+}
